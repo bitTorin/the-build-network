@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import FilePreview from "./FilePreview";
+import { Button, TextArea } from 'ui-neumorphism';
 import styles from "../styles/DropZone.module.css";
 
 const DropZone = ({ data, dispatch }) => {
+    
     // onDragEnter sets inDropZone to true
     const handleDragEnter = (e) => {
       e.preventDefault();
@@ -72,37 +74,16 @@ const DropZone = ({ data, dispatch }) => {
   
 return (
     <>
-    <div
-        className={styles.dropzone}
-        onDragEnter={(e) => handleDragEnter(e)}
-        onDragOver={(e) => handleDragOver(e)}
-        onDragLeave={(e) => handleDragLeave(e)}
-        onDrop={(e) => handleDrop(e)}
-    >
-        <Image src="/upload.svg" alt="upload" height={50} width={50} />
-
-        <input
-        id="fileSelect"
-        type="file"
-        multiple
-        className={styles.files}
-        onChange={(e) => handleFileSelect(e)}
-        />
-        <label htmlFor="fileSelect">You can select multiple Files</label>
-
-        <h3 className={styles.uploadMessage}>
-        or drag &amp; drop your files here
-        </h3>
-    </div>
-    {/* Pass the selectect or dropped files as props */}
-    <FilePreview fileData={data} />
-    {data.fileList.length > 0 && (
-        <button className={styles.uploadBtn} onClick={uploadFiles}>
-          Upload
-        </button>
-      )}
+      <TextArea
+        height={40}
+        loading={true}
+        rounded={true}
+        value="Upload files here"
+      >
+        <Button />
+      </TextArea>
     </>
     );
 };
   
-  export default DropZone;
+export default DropZone;
